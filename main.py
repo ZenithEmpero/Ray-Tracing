@@ -2,6 +2,7 @@ import pygame as pg, time as t, random as r
 from settings import *
 from wall import *
 from user import *
+from controls import *
 
 class Window:
 
@@ -29,6 +30,8 @@ class Window:
     def update(self):
         pg.display.update()
         self.delta_time = self.clock.tick(FPS)
+        self.controls = Controls(.5 * self.delta_time)
+        self.controls.movement()
         pg.display.set_caption(f'POS: {pg.mouse.get_pos()}      FPS: {round(self.clock.get_fps(), 2)}   {self.user.if_hit_wall}')
 
     def check_events(self):
