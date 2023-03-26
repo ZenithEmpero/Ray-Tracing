@@ -26,13 +26,13 @@ class User:
         self.end = (self.pos[0] + self.direction[0] * 20, self.pos[1] + self.direction[1] * 20)
         self.end2 = (self.pos[0] + self.direction[0] * user_ray_length, self.pos[1] + self.direction[1] * user_ray_length)
 
-        
-
         #Kuhaon ang mga position sa multi rays stored in self.rays_pos
         self.multiple_rays()
 
         self.ray_cast()
         #pg.draw.line(self.window.window, (255, 0, 0), (self.pos[0], self.pos[1]), (self.end[0], self.end[1]), width=10)
+        pg.draw.circle(self.window.window, 'red', self.pos, 8)
+
 
     def multiple_rays(self):
         self.rays_pos = []
