@@ -30,7 +30,7 @@ class Window:
     def update(self):
         pg.display.update()
         self.delta_time = self.clock.tick(FPS)
-        self.controls = Controls(.5 * self.delta_time)
+        self.controls = Controls(.1 * self.delta_time)
         self.controls.movement()
         pg.display.set_caption(f'POS: {pg.mouse.get_pos()}      FPS: {round(self.clock.get_fps(), 2)}   {self.user.if_hit_wall}')
 
@@ -40,7 +40,7 @@ class Window:
                 pg.quit()
 
     def draw(self):
-        self.window.fill((23, 2, 117))
+        self.window.fill((0, 0, 0))
         self.wall.draw()
         self.user.draw()
 

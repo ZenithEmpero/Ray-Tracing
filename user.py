@@ -26,6 +26,8 @@ class User:
         self.end = (self.pos[0] + self.direction[0] * 20, self.pos[1] + self.direction[1] * 20)
         self.end2 = (self.pos[0] + self.direction[0] * user_ray_length, self.pos[1] + self.direction[1] * user_ray_length)
 
+        
+
         #Kuhaon ang mga position sa multi rays stored in self.rays_pos
         self.multiple_rays()
 
@@ -51,8 +53,8 @@ class User:
     def ray_cast(self):
         for a in self.rays_pos:
             self.num_of_intersections = 0
+            self.points = []
             for i in self.walls:
-                self.points = []
                 
                 x1 = self.pos[0]
                 x2 = a[0]
@@ -81,17 +83,15 @@ class User:
                 else:
                     #print(f'T: [{self.t_num}] U: [{self.u}] Bool: [FALSE] VALUES: X1[{x1}] X3[{x3}] Y3[{y3}] Y4[{y4}] Y1[{y1}] X4[{x4}]')
                     self.num_of_intersections += 0
-                if self.num_of_intersections > 0:
-                    self.draw_ray()
-                else:
-                    pg.draw.line(self.window.window, 'green', self.pos, a, 2)
+            if len(self.points) > 0:
+                self.draw_ray()
+            else:
+                pg.draw.line(self.window.window, ray_color, self.pos, a, 2)
                 
     def draw_ray(self):
-        for i in self.rays_pos:
-            if len(self.points) > 0:
-                x = self.check_nearest_point()
-                pg.draw.line(self.window.window, (255, 255, 0), self.pos, x, 2)
-                #pg.draw.circle(self.window.window, (255, 255, 0), x, 5)
+        x = self.check_nearest_point()
+        pg.draw.line(self.window.window, ray_color, self.pos, x, 2)
+        #pg.draw.circle(self.window.window, (255, 255, 0), x, 5)
     
     def check_nearest_point(self):
         point_dis = {}
